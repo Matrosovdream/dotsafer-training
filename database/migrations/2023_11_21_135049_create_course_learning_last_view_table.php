@@ -12,7 +12,8 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('course_learning_last_views', function (Blueprint $table) {
+        if (!Schema::hasTable('course_learning_last_views')) {
+            Schema::create('course_learning_last_views', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('item_id')->unsigned();
@@ -20,7 +21,8 @@ return new class extends Migration {
             $table->bigInteger('visited_at')->unsigned();
 
             $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
-        });
+            });
+        }
     }
 
     /**

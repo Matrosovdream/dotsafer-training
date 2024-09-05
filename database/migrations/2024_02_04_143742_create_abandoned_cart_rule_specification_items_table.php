@@ -13,10 +13,10 @@ return new class extends Migration {
     public function up()
     {
         Schema::table("abandoned_cart_rules", function (Blueprint $table) {
-            $table->enum('target_type', \App\Models\AbandonedCartRule::$targetTypes)->default('all')->after('id');
-            $table->string('target')->nullable()->after('target_type');
-            $table->boolean('repeat_action')->default(false)->after('action_cycle');
-            $table->integer('repeat_action_count')->unsigned()->nullable()->after('repeat_action');
+            //$table->enum('target_type', \App\Models\AbandonedCartRule::$targetTypes)->default('all')->after('id');
+            //$table->string('target')->nullable()->after('target_type');
+            //$table->boolean('repeat_action')->default(false)->after('action_cycle');
+            //$table->integer('repeat_action_count')->unsigned()->nullable()->after('repeat_action');
         });
 
         Schema::create('abandoned_cart_rule_specification_items', function (Blueprint $table) {
@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->integer('category_id')->unsigned()->nullable();
             $table->integer('instructor_id')->unsigned()->nullable();
             $table->integer('seller_id')->unsigned()->nullable();
-            $table->integer('webinar_id')->unsigned()->nullable();
+            //$table->integer('webinar_id')->unsigned()->nullable();
             $table->integer('product_id')->unsigned()->nullable();
             $table->integer('bundle_id')->unsigned()->nullable();
 
@@ -33,7 +33,7 @@ return new class extends Migration {
             $table->foreign('category_id')->on('categories')->references('id')->cascadeOnDelete();
             $table->foreign('instructor_id')->on('users')->references('id')->cascadeOnDelete();
             $table->foreign('seller_id')->on('users')->references('id')->cascadeOnDelete();
-            $table->foreign('webinar_id')->on('webinars')->references('id')->cascadeOnDelete();
+            //$table->foreign('webinar_id')->on('webinars')->references('id')->cascadeOnDelete();
             $table->foreign('product_id')->on('products')->references('id')->cascadeOnDelete();
             $table->foreign('bundle_id')->on('bundles')->references('id')->cascadeOnDelete();
         });
