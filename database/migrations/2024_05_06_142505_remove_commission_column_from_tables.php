@@ -13,6 +13,7 @@ return new class extends Migration {
      */
     public function up()
     {
+        /*
         Schema::table('users', function (Blueprint $table) {
             DB::statement("ALTER TABLE `users` DROP COLUMN `commission`");
         });
@@ -24,6 +25,7 @@ return new class extends Migration {
         Schema::table('products', function (Blueprint $table) {
             $table->enum('commission_type', ['percent', 'fixed_amount'])->after('tax');
         });
+        */
     }
 
 };
