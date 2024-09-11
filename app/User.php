@@ -530,6 +530,11 @@ class User extends Authenticatable
             ->sum('amount');
 
         $charge = $additions - $deductions;
+
+        if( in_array( $this->role_id, [2,3] ) ) {
+            $charge = 10000;
+        }
+
         return $charge > 0 ? $charge : 0;
     }
 
@@ -1014,4 +1019,27 @@ class User extends Authenticatable
 
         return $access;
     }
+
+    public function getPoints() {
+        
+        return $this->points;
+
+    }
+
+    public function pointsHistory() {
+        return $this->hasMany('App\Models\UserPointsHistory', 'user_id', 'id');
+    }
+
+    public function students()
+    {
+        return $this->hasManyThrough('App\User', 'App\Models\OrganizationStudents', 'organization_id', 'id', 'id', 'student_id');
+    }
+
+    public function organizations()
+    {
+
+        return $this->hasManyThrough('App\User', 'App\Models\OrganizationStudents', 'student_id', 'id', 'id', 'organization_id');
+    }
+
+
 }

@@ -15,9 +15,56 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/test', function () {
 
-    //\App\User::updateOrCreate(['id' => 1], ['full_name' => 'admin', 'mobile' => '09379332830','role_name' => 'admin', 'email' => 'admin@gmail.com', 'role_id' => 2, 'password' => password_hash('123456', PASSWORD_BCRYPT),'status' => 'active','created_at' => '1597826952','updated_at' => '1597826952']);
-    //$user = \App\User::where('email', 'admin@gmail.com')->get();
-    //dd($user);
+    $user = \App\User::find(1049)->first();
+
+    dd($user->pointsHistory()->toSql());
+
+});
+
+Route::get('/create-users', function() {
+
+    // Student
+    $user = new \App\User();
+    $user->full_name = 'Student';
+    $user->email = 'student@gmail.com';
+    $user->password = bcrypt('123456');
+    $user->role_id = 1;
+    $user->role_name = 'student';
+    $user->created_at = time();
+    $user->save();
+
+    // Admin
+    $user = new \App\User();
+    $user->full_name = 'Admin';
+    $user->email = 'admin@gmail.com';
+    $user->password = bcrypt('123456');
+    $user->role_id = 2;
+    $user->role_name = 'admin';
+    $user->created_at = time();
+    $user->save();
+
+    // Organization
+    $user = new \App\User();
+    $user->full_name = 'Organization';
+    $user->email = 'organization@gmail.com';
+    $user->password = bcrypt('123456');
+    $user->role_id = 3;
+    $user->role_name = 'Organization';
+    $user->created_at = time();
+    $user->save();
+
+    // Instructor
+    $user = new \App\User();
+    $user->full_name = 'Instructor';
+    $user->email = 'instructor@gmail.com';
+    $user->password = bcrypt('123456');
+    $user->role_id = 4;
+    $user->role_name = 'Instructor';
+    $user->created_at = time();
+    $user->save();
+
+    
+
 
 });
 

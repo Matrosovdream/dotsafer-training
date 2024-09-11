@@ -1220,11 +1220,29 @@ class WebinarController extends Controller
             'sales' => $sales,
             'purchasedCount' => $purchasedCount + $giftPurchasedCount,
             'hours' => $hours,
-            'upComing' => $upComing + $giftUpcoming
+            'upComing' => $upComing + $giftUpcoming,
+            'user' => $user,
         ];
 
         return view(getTemplate() . '.panel.webinar.purchases', $data);
     }
+
+    public function myStudents(Request $request)
+    {
+        $this->authorize("panel_webinars_my_purchases");
+
+        $user = auth()->user();
+        $data = [
+            'pageTitle' => 'My students',
+            'user' => $user,
+            'students' => $user->students,
+            'studentsCount' => $user->students->count(),
+        ];
+
+        return view(getTemplate() . '.panel.webinar.students', $data);
+
+
+    }    
 
     public function getJoinInfo(Request $request)
     {

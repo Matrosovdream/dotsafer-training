@@ -10,7 +10,8 @@
 
         <div class="activities-container mt-25 p-20 p-lg-35">
             <div class="row">
-                <div class="col-4 d-flex align-items-center justify-content-center">
+
+                <div class="col-3 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/webinars.svg" width="64" height="64" alt="">
                         <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $purchasedCount }}</strong>
@@ -18,7 +19,7 @@
                     </div>
                 </div>
 
-                <div class="col-4 d-flex align-items-center justify-content-center">
+                <div class="col-3 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/hours.svg" width="64" height="64" alt="">
                         <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ convertMinutesToHourAndMinute($hours) }}</strong>
@@ -26,7 +27,7 @@
                     </div>
                 </div>
 
-                <div class="col-4 d-flex align-items-center justify-content-center">
+                <div class="col-3 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/upcoming.svg" width="64" height="64" alt="">
                         <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $upComing }}</strong>
@@ -134,6 +135,7 @@
                                                 @if(!empty($sale->gift_id))
                                                     <span class="badge badge-primary ml-10">{{ trans('update.gift') }}</span>
                                                 @endif
+
                                             </h3>
                                         </a>
 
@@ -162,6 +164,11 @@
                                                         @if($item->price > 0)
                                                             <a href="/panel/webinars/{{ $item->id }}/sale/{{ $sale->id }}/invoice" target="_blank" class="webinar-actions d-block mt-10">{{ trans('public.invoice') }}</a>
                                                         @endif
+
+                                                        @if ($authUser->role_id == 3)
+                                                            <a href="/panel/webinars/{{ $item->id }}/manage" class="webinar-actions d-block mt-10">Manage</a>
+                                                        @endif
+
                                                     @endif
 
                                                     <a href="{{ $item->getUrl() }}?tab=reviews" target="_blank" class="webinar-actions d-block mt-10">{{ trans('public.feedback') }}</a>
