@@ -21,6 +21,8 @@
             @endif
         </div>
 
+        {{ $authUser->id }}
+        
         @if(!$authUser->financial_approval and !$authUser->isUser())
             <div class="p-15 mt-20 p-lg-20 not-verified-alert font-weight-500 text-dark-blue rounded-sm panel-shadow">
                 {{ trans('panel.not_verified_alert') }}
@@ -181,7 +183,6 @@
             </div>
         </div>
     </section>
-
 
     <div class="d-none" id="iNotAvailableModal">
         <div class="offline-modal">

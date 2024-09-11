@@ -52,6 +52,21 @@ Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['imp
             Route::post('/getJoinInfo', 'WebinarController@getJoinInfo');
         });
 
+        // Manager Routes for Webinar Organization
+        Route::get('/{id}/manage', 'WebinarOrgManageController@index')->name('panel.webinar.manage.index');
+        Route::get('/{id}/manage/invite', 'WebinarOrgManageController@invite')->name('panel.webinar.manage.invite');
+        Route::post('/{id}/manage/invite', 'WebinarOrgManageController@inviteStore')->name('panel.webinar.manage.invite.store');
+        Route::get('/{id}/manage/certificates', 'WebinarOrgManageController@certificates')->name('panel.webinar.manage.certificates');
+
+        // Student Routes for Webinar Organization
+        Route::get('/invites', 'WebinarOrgStudentController@invites')->name('panel.webinar.student.invites');
+        Route::get('/invites/{id}/', 'WebinarOrgStudentController@inviteSingle')->name('panel.webinar.student.invite');
+        Route::post('/invites/{id}/accept', 'WebinarOrgStudentController@acceptInvite')->name('panel.webinar.student.invite.accept');
+        Route::post('/invites/{id}/reject', 'WebinarOrgStudentController@rejectInvite')->name('panel.webinar.student.invite.reject');
+
+
+        
+
         Route::post('/search', 'WebinarController@search');
 
         Route::group(['prefix' => 'comments'], function () {

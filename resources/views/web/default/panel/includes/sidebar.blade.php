@@ -61,7 +61,7 @@
         @endif
     </div>
 
-    <ul id="panel-sidebar-scroll" class="sidebar-menu pt-10 @if(!empty($authUser->userGroup)) has-user-group @endif @if(empty($getPanelSidebarSettings) or empty($getPanelSidebarSettings['background'])) without-bottom-image @endif" @if((!empty($isRtl) and $isRtl)) data-simplebar-direction="rtl" @endif>
+    <ul id="panel-sidebar-scroll" style="height: calc(100% - 250px);" class="sidebar-menu pt-10 @if(!empty($authUser->userGroup)) has-user-group @endif @if(empty($getPanelSidebarSettings) or empty($getPanelSidebarSettings['background'])) without-bottom-image @endif" @if((!empty($isRtl) and $isRtl)) data-simplebar-direction="rtl" @endif>
 
         <li class="sidenav-item {{ (request()->is('panel')) ? 'sidenav-item-active' : '' }}">
             <a href="/panel" class="d-flex align-items-center">
@@ -128,6 +128,63 @@
                 </li>
             @endcan
         @endif
+
+        @if ( 
+            Route::is('panel.webinar.manage.index') || 
+            Route::is('panel.webinar.manage.invite') || 
+            Route::is('panel.webinar.manage.certificates') 
+            )
+            
+            <li class="sidenav-item {{ (request()->is('panel/webinars') or request()->is('panel/webinars/*')) ? 'sidenav-item-active' : '' }}">
+                <a class="d-flex align-items-center" data-toggle="collapse" href="#webinarCollapse" role="button" aria-expanded="false" aria-controls="webinarCollapse">
+                <span class="sidenav-item-icon mr-10">
+                    @include('web.default.panel.includes.sidebar_icons.webinars')
+                </span>
+                    <span class="font-14 text-dark-blue font-weight-500">Course #{{ $webinar->id }}</span>
+                </a>
+
+                <div class="collapse {{ (request()->is('panel/webinars') or request()->is('panel/webinars/*')) ? 'show' : '' }}" id="webinarCollapse">
+                    <ul class="sidenav-item-collapse">
+
+                        <li class="mt-5 {{ ( Route::is('panel.webinar.manage.index') ) ? 'active' : '' }}">
+                            <a href="{{ Route('panel.webinar.manage.index', ['id' => $webinar->id]) }}">Invites</a>  
+                        </li>
+
+                        <li class="mt-5 {{ ( Route::is('panel.webinar.manage.invite') ) ? 'active' : '' }}">
+                            <a href="{{ Route('panel.webinar.manage.invite', ['id' => $webinar->id]) }}">Invite Student</a>
+                        </li>
+
+                        <li class="mt-5 {{ ( Route::is('panel.webinar.manage.certificates') ) ? 'active' : '' }}">
+                            <a href="{{ Route('panel.webinar.manage.certificates', ['id' => $webinar->id]) }}">Certificates</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
+        @endif
+
+        @if( $authUser->role_id == 1 )
+            
+            <li class="sidenav-item {{ (request()->is('panel/webinars') or request()->is('panel/webinars/*')) ? 'sidenav-item-active' : '' }}">
+                <a class="d-flex align-items-center" data-toggle="collapse" href="#webinarCollapse" role="button" aria-expanded="false" aria-controls="webinarCollapse">
+                <span class="sidenav-item-icon mr-10">
+                    @include('web.default.panel.includes.sidebar_icons.webinars')
+                </span>
+                    <span class="font-14 text-dark-blue font-weight-500">Organization</span>
+                </a>
+
+                <div class="collapse {{ (request()->is('panel/webinars') or request()->is('panel/webinars/*')) ? 'show' : '' }}" id="webinarCollapse">
+                    <ul class="sidenav-item-collapse">
+                        <li class="mt-5 {{ ( Route::is('panel.webinar.student.invites') ) ? 'active' : '' }}">
+                            <a href="{{ Route('panel.webinar.student.invites') }}">Invites</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+        @endif
+                    
 
         @can('panel_webinars')
             <li class="sidenav-item {{ (request()->is('panel/webinars') or request()->is('panel/webinars/*')) ? 'sidenav-item-active' : '' }}">
@@ -866,6 +923,7 @@
 
     </ul>
 
+    <?php /*
     @if(!empty($getPanelSidebarSettings) and !empty($getPanelSidebarSettings['background']))
         <div class="sidebar-create-class d-none d-md-block">
             <a href="{{ !empty($getPanelSidebarSettings['link']) ? $getPanelSidebarSettings['link'] : '' }}" class="sidebar-create-class-btn d-block text-right p-5">
@@ -873,4 +931,5 @@
             </a>
         </div>
     @endif
+    <?php */ ?>
 </div>
