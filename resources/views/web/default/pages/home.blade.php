@@ -73,89 +73,43 @@
 
 
     {{-- Statistics --}}
+    <?php /* ?>
     @include('web.default.pages.includes.home_statistics')
+    <?php */ ?>
 
-
+    
     @foreach($homeSections as $homeSection)
 
-        @if($homeSection->name == \App\Models\HomeSection::$featured_classes and !empty($featureWebinars) and !$featureWebinars->isEmpty())
+        @if($homeSection->name == \App\Models\HomeSection::$latest_classes and !empty($latestWebinars) and !$latestWebinars->isEmpty())
             <section class="home-sections home-sections-swiper container">
-                <div class="px-20 px-md-0">
-                    <h2 class="section-title">{{ trans('home.featured_classes') }}</h2>
-                    <p class="section-hint">{{ trans('home.featured_classes_hint') }}</p>
+                <div class="d-flex justify-content-between ">
+                    <div>
+                        <h2 class="section-title">{{ trans('home.latest_classes') }}</h2>
+                        <p class="section-hint">{{ trans('home.latest_webinars_hint') }}</p>
+                    </div>
+
+                    <a href="/classes?sort=newest" class="btn btn-border-white">{{ trans('home.view_all') }}</a>
                 </div>
 
-                <div class="feature-slider-container position-relative d-flex justify-content-center mt-10">
-                    <div class="swiper-container features-swiper-container pb-25">
-                        <div class="swiper-wrapper py-10">
-                            @foreach($featureWebinars as $feature)
+                <div class="mt-10 position-relative">
+                    <div class="swiper-container latest-webinars-swiper px-12">
+                        <div class="swiper-wrapper py-20">
+                            @foreach($latestWebinars as $latestWebinar)
                                 <div class="swiper-slide">
-
-                                    <a href="{{ $feature->webinar->getUrl() }}">
-                                        <div class="feature-slider d-flex h-100" style="background-image: url('{{ $feature->webinar->getImage() }}')">
-                                            <div class="mask"></div>
-                                            <div class="p-5 p-md-25 feature-slider-card">
-                                                <div class="d-flex flex-column feature-slider-body position-relative h-100">
-                                                    @if($feature->webinar->bestTicket() < $feature->webinar->price)
-                                                        <span class="badge badge-danger mb-2 ">{{ trans('public.offer',['off' => $feature->webinar->bestTicket(true)['percent']]) }}</span>
-                                                    @endif
-                                                    <a href="{{ $feature->webinar->getUrl() }}">
-                                                        <h3 class="card-title mt-1">{{ $feature->webinar->title }}</h3>
-                                                    </a>
-
-                                                    <div class="user-inline-avatar mt-15 d-flex align-items-center">
-                                                        <div class="avatar bg-gray200">
-                                                            <img src="{{ $feature->webinar->teacher->getAvatar() }}" class="img-cover" alt="{{ $feature->webinar->teacher->full_naem }}">
-                                                        </div>
-                                                        <a href="{{ $feature->webinar->teacher->getProfileUrl() }}" target="_blank" class="user-name font-14 ml-5">{{ $feature->webinar->teacher->full_name }}</a>
-                                                    </div>
-
-                                                    <p class="mt-25 feature-desc text-gray">{{ $feature->description }}</p>
-
-                                                    @include('web.default.includes.webinar.rate',['rate' => $feature->webinar->getRate()])
-
-                                                    <div class="feature-footer mt-auto d-flex align-items-center justify-content-between">
-                                                        <div class="d-flex justify-content-between">
-                                                            <div class="d-flex align-items-center">
-                                                                <i data-feather="clock" width="20" height="20" class="webinar-icon"></i>
-                                                                <span class="duration ml-5 text-dark-blue font-14">{{ convertMinutesToHourAndMinute($feature->webinar->duration) }} {{ trans('home.hours') }}</span>
-                                                            </div>
-
-                                                            <div class="vertical-line mx-10"></div>
-
-                                                            <div class="d-flex align-items-center">
-                                                                <i data-feather="calendar" width="20" height="20" class="webinar-icon"></i>
-                                                                <span class="date-published ml-5 text-dark-blue font-14">{{ dateTimeFormat(!empty($feature->webinar->start_date) ? $feature->webinar->start_date : $feature->webinar->created_at,'j M Y') }}</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="feature-price-box">
-                                                            @if(!empty($feature->webinar->price ) and $feature->webinar->price > 0)
-                                                                @if($feature->webinar->bestTicket() < $feature->webinar->price)
-                                                                    <span class="real">{{ handlePrice($feature->webinar->bestTicket(), true, true, false, null, true) }}</span>
-                                                                @else
-                                                                    {{ handlePrice($feature->webinar->price, true, true, false, null, true) }}
-                                                                @endif
-                                                            @else
-                                                                {{ trans('public.free') }}
-                                                            @endif
-
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    @include('web.default.includes.webinar.grid-card',['webinar' => $latestWebinar])
                                 </div>
                             @endforeach
+
                         </div>
                     </div>
 
-                    <div class="swiper-pagination features-swiper-pagination"></div>
+                    <div class="d-flex justify-content-center">
+                        <div class="swiper-pagination latest-webinars-swiper-pagination"></div>
+                    </div>
                 </div>
             </section>
         @endif
+
 
         @if($homeSection->name == \App\Models\HomeSection::$latest_bundles and !empty($latestBundles) and !$latestBundles->isEmpty())
             <section class="home-sections home-sections-swiper container">
@@ -188,6 +142,7 @@
         @endif
 
         {{-- Upcoming Course --}}
+        <?php /* ?>
         @if($homeSection->name == \App\Models\HomeSection::$upcoming_courses and !empty($upcomingCourses) and !$upcomingCourses->isEmpty())
             <section class="home-sections home-sections-swiper container">
                 <div class="d-flex justify-content-between ">
@@ -212,36 +167,6 @@
 
                     <div class="d-flex justify-content-center">
                         <div class="swiper-pagination upcoming-courses-swiper-pagination"></div>
-                    </div>
-                </div>
-            </section>
-        @endif
-
-        @if($homeSection->name == \App\Models\HomeSection::$latest_classes and !empty($latestWebinars) and !$latestWebinars->isEmpty())
-            <section class="home-sections home-sections-swiper container">
-                <div class="d-flex justify-content-between ">
-                    <div>
-                        <h2 class="section-title">{{ trans('home.latest_classes') }}</h2>
-                        <p class="section-hint">{{ trans('home.latest_webinars_hint') }}</p>
-                    </div>
-
-                    <a href="/classes?sort=newest" class="btn btn-border-white">{{ trans('home.view_all') }}</a>
-                </div>
-
-                <div class="mt-10 position-relative">
-                    <div class="swiper-container latest-webinars-swiper px-12">
-                        <div class="swiper-wrapper py-20">
-                            @foreach($latestWebinars as $latestWebinar)
-                                <div class="swiper-slide">
-                                    @include('web.default.includes.webinar.grid-card',['webinar' => $latestWebinar])
-                                </div>
-                            @endforeach
-
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-center">
-                        <div class="swiper-pagination latest-webinars-swiper-pagination"></div>
                     </div>
                 </div>
             </section>
@@ -275,7 +200,9 @@
                 </div>
             </section>
         @endif
+        <?php */ ?>
 
+        <?php /* ?>
         @if($homeSection->name == \App\Models\HomeSection::$trend_categories and !empty($trendCategories) and !$trendCategories->isEmpty())
             <section class="home-sections home-sections-swiper container">
                 <h2 class="section-title">{{ trans('home.trending_categories') }}</h2>
@@ -309,6 +236,7 @@
                 </div>
             </section>
         @endif
+        
 
         {{-- Ads Bannaer --}}
         @if($homeSection->name == \App\Models\HomeSection::$full_advertising_banner and !empty($advertisingBanners1) and count($advertisingBanners1))
@@ -325,6 +253,7 @@
             </div>
         @endif
         {{-- ./ Ads Bannaer --}}
+        
 
         @if($homeSection->name == \App\Models\HomeSection::$best_sellers and !empty($bestSaleWebinars) and !$bestSaleWebinars->isEmpty())
             <section class="home-sections container">
@@ -414,6 +343,7 @@
                 </div>
             </section>
         @endif
+        
 
         @if($homeSection->name == \App\Models\HomeSection::$store_products and !empty($newProducts) and !$newProducts->isEmpty())
             <section class="home-sections home-sections-swiper container">
@@ -445,6 +375,7 @@
                 </div>
             </section>
         @endif
+        
 
         @if($homeSection->name == \App\Models\HomeSection::$testimonials and !empty($testimonials) and !$testimonials->isEmpty())
             <div class="position-relative home-sections testimonials-container">
@@ -907,6 +838,7 @@
                 </div>
             </section>
         @endif
+        <?php */ ?>
 
     @endforeach
 @endsection

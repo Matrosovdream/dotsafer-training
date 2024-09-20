@@ -132,7 +132,8 @@
         @if ( 
             Route::is('panel.webinar.manage.index') || 
             Route::is('panel.webinar.manage.invite') || 
-            Route::is('panel.webinar.manage.certificates') 
+            Route::is('panel.webinar.manage.certificates') ||
+            Route::is('panel.webinar.manage.purchasecredits')
             )
             
             <li class="sidenav-item {{ (request()->is('panel/webinars') or request()->is('panel/webinars/*')) ? 'sidenav-item-active' : '' }}">
@@ -156,6 +157,10 @@
 
                         <li class="mt-5 {{ ( Route::is('panel.webinar.manage.certificates') ) ? 'active' : '' }}">
                             <a href="{{ Route('panel.webinar.manage.certificates', ['id' => $webinar->id]) }}">Certificates</a>
+                        </li>
+
+                        <li class="mt-5 {{ ( Route::is('panel.webinar.manage.purchasecredits') ) ? 'active' : '' }}">
+                            <a href="{{ Route('panel.webinar.manage.purchasecredits', ['id' => $webinar->id]) }}">Purchase credits</a>  
                         </li>
 
                     </ul>

@@ -70,6 +70,19 @@ class WebinarOrgStudentController extends Controller
         $newSale->created_at = time();
         $newSale->save();
 
+        // Add credits to Webinar History
+        $invite->webinar->creditHistory()->create([
+            'user_id' => $invite->org_id,
+            'user_id_to' => $invite->student_id,
+            'amount' => $invite->credits,
+            'action' =>  'deduct',
+        ]);
+
+        // Deduct credits from the org
+        $webinar = $invite->webinar;
+        $webinar->credits()->decrement('amount', 1);
+        
+
         return redirect()->route('panel.webinar.student.invites');
     }
 

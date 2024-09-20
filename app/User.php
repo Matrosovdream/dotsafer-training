@@ -1041,5 +1041,9 @@ class User extends Authenticatable
         return $this->hasManyThrough('App\User', 'App\Models\OrganizationStudents', 'student_id', 'id', 'id', 'organization_id');
     }
 
+    public function credit()
+    {
+        return $this->hasOne( 'App\Models\WebinarCredit', 'user_id', 'id');
+    }
 
 }

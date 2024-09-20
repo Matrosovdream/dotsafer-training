@@ -57,6 +57,8 @@ Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['imp
         Route::get('/{id}/manage/invite', 'WebinarOrgManageController@invite')->name('panel.webinar.manage.invite');
         Route::post('/{id}/manage/invite', 'WebinarOrgManageController@inviteStore')->name('panel.webinar.manage.invite.store');
         Route::get('/{id}/manage/certificates', 'WebinarOrgManageController@certificates')->name('panel.webinar.manage.certificates');
+        Route::get('/{id}/manage/purchasecredits', 'WebinarOrgManageController@purchasecredits')->name('panel.webinar.manage.purchasecredits');
+        Route::post('/{id}/manage/purchasecredits/gateway', 'WebinarOrgManageController@purchasecreditsGateway')->name('panel.webinar.manage.purchasecredits.gateway');
 
         // Student Routes for Webinar Organization
         Route::get('/invites', 'WebinarOrgStudentController@invites')->name('panel.webinar.student.invites');
