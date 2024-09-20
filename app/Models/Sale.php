@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Mixins\RegistrationBonus\RegistrationBonusAccounting;
 use App\Models\Observers\SaleNumberObserver;
 use Illuminate\Database\Eloquent\Model;
+use App\Observers\SaleObserver;
 
 class Sale extends Model
 {
@@ -31,6 +32,7 @@ class Sale extends Model
         parent::boot();
 
         Sale::observe(SaleNumberObserver::class);
+        Sale::observe(SaleObserver::class);
     }
 
     public function webinar()

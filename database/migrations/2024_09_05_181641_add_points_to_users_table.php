@@ -16,7 +16,7 @@ return new class extends Migration
     {
         if (!Schema::hasColumn('users', 'points')) {
             Schema::table('users', function (Blueprint $table) {
-                //$table->integer('points')->unsigned()->default(0)->after('registration_bonus_amount');
+                $table->integer('org_points')->unsigned()->default(0)->after('organ_id');
             });
         }
     }
@@ -30,7 +30,7 @@ return new class extends Migration
     {
         if (Schema::hasColumn('users', 'points')) {
             Schema::table('users', function (Blueprint $table) {
-                $table->dropColumn('points');
+                $table->dropColumn('org_points');
             });
         }
     }

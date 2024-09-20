@@ -119,7 +119,7 @@
                         data-buttontext="product_price"
                         data-description="Rozerpay"
                         data-currency="{{ currency() }}"
-                        data-image="{{ $generalSettings['logo'] }}"
+                        <?php /* data-image="{{ $generalSettings['logo'] }}" <?php */ ?>
                         data-prefill.name="{{ $order->user->full_name }}"
                         data-prefill.email="{{ $order->user->email }}"
                         data-theme.color="#43d477">

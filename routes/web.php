@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Cart;
+use App\Http\Controllers\Web\CartController;
+use Illuminate\Http\Request;
+
+use App\Models\InstallmentOrderPayment;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +18,33 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/cart-test', function() {
+
+    $user = auth()->user();
+
+    if (!empty($user) and !empty(getFeaturesSettings('direct_classes_payment_button_status'))) {
+
+        $fakeCarts = collect();
+
+        $fakeCart = new Cart();
+        $fakeCart->creator_id = $user->id;
+        $fakeCart->webinar_id = 2002;
+        $fakeCart->ticket_id = null;
+        $fakeCart->special_offer_id = null;
+        $fakeCart->created_at = time();
+
+        $fakeCarts->add($fakeCart);
+
+        $cartController = new CartController();
+
+        return $cartController->checkout(new Request(), $fakeCarts, $total);
+
+    }
+
+
+});
+
 
 Route::get('/test', function () {
 

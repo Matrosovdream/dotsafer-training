@@ -439,7 +439,7 @@ class CartController extends Controller
         ];
     }
 
-    public function checkout(Request $request, $carts = null)
+    public function checkout(Request $request, $carts = null, $total = null)
     {
         $user = auth()->user();
 
@@ -500,6 +500,10 @@ class CartController extends Controller
 
                 $totalCashbackAmount = $this->getTotalCashbackAmount($carts, $user, $calculate["sub_total"]);
 
+                // Default
+                //$order->type = 'addiction'; 
+                $order->type = 'gift'; 
+
                 $data = [
                     'pageTitle' => trans('public.checkout_page_title'),
                     'paymentChannels' => $paymentChannels,
@@ -517,6 +521,15 @@ class CartController extends Controller
                     'totalCashbackAmount' => $totalCashbackAmount,
                     'previousUrl' => url()->previous(),
                 ];
+
+                
+
+                if( isset($total) ) {
+                    $data['subTotal'] = $total;
+                    $data['total'] = $total;
+                }
+
+                //dd($data);
 
                 return view(getTemplate() . '.cart.payment', $data);
             } else {

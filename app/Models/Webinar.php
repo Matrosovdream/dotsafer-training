@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Mixins\Certificate\MakeCertificate;
 use App\Models\Traits\CascadeDeletes;
+use App\Models\WebinarCreditHistory;
 use App\User;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
@@ -12,6 +13,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Jorenvh\Share\ShareFacade;
 use Spatie\CalendarLinks\Link;
+
 
 class Webinar extends Model implements TranslatableContract
 {
@@ -209,6 +211,14 @@ class Webinar extends Model implements TranslatableContract
         return $this->hasMany(Waitlist::class, 'webinar_id', 'id');
     }
 
+    public function creditHistory()
+    {
+        return $this->hasMany(WebinarCreditHistory::class, 'webinar_id', 'id');
+    }
+
+    public function credits() {
+        return $this->hasOne(WebinarCredit::class, 'webinar_id', 'id');
+    }
 
     public function getRate()
     {

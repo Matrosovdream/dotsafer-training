@@ -31,6 +31,8 @@ class PaymentController extends Controller
             'gateway' => 'required'
         ]);
 
+        
+
         $user = auth()->user();
         $gateway = $request->input('gateway');
         $orderId = $request->input('order_id');
@@ -205,7 +207,6 @@ class PaymentController extends Controller
         } else {
             foreach ($order->orderItems as $orderItem) {
                 $sale = Sale::createSales($orderItem, $order->payment_method);
-
                 if (!empty($orderItem->reserve_meeting_id)) {
                     $reserveMeeting = ReserveMeeting::where('id', $orderItem->reserve_meeting_id)->first();
                     $reserveMeeting->update([
@@ -273,6 +274,20 @@ class PaymentController extends Controller
         if (!empty(session()->get($this->order_session_key, null))) {
             $orderId = session()->get($this->order_session_key, null);
             session()->forget($this->order_session_key);
+        }
+
+        // if previous url is panel.webinar.manage.purchasecredits.gateway
+        if (strpos(url()->previous(), 'manage/purchasecredits/gateway') !== false) {
+            
+            // Get the latest sale
+            $sale = Sale::latest()->first();
+
+            $sale->type = Sale::$gift;
+            $sale->save();
+
+            // Redirect to the purchase credits page
+            return redirect()->route('panel.webinar.manage.index', $sale->webinar_id);
+
         }
 
         $order = Order::where('id', $orderId)
@@ -410,3 +425,5 @@ class PaymentController extends Controller
     }
 
 }
+
+
