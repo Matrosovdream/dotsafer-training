@@ -1,3 +1,61 @@
+<br/><br/><br/><br/><br/><br/>
+
+<footer class="">
+	<div class="md:py-8 p-4 container relative px-4 ">
+		<div class="flex justify-between flex-col lg:flex-row gap-5">
+			<div class="lg:max-w-xl w-full">
+				<h2 class="md:mb-7 mb-5 font-semibold fs-h3 !break-words">
+                    Trusted by 1,676 Employers and 42,467 Learners Since 2014.
+                  </h2>
+				<div class="mb-2">
+					<div class="editor-text-wrap max-w-full data-table table-auto relative overflow-x-auto overflow-y-hidden main-scrollbar">
+						<p>Founded in 2014 by Andrew Easler, a former high-school teacher turned attorney, <a href="index.html" rel="dofollow">WorkTraining.com</a>® provides content creation, <a href="scorm-files.html" rel="dofollow">licenses SCORM-courseware</a>, offers a subscription-based <a href="learning-management-system.html" rel="dofollow">learning management
+                          system</a>, EaslerLMS, and delivers legal insights, compliance, and qualification training covering topics related to workplace safety, <a href="training-courses/reasonable-suspicion-training.html" rel="dofollow">reasonable
+                          suspicion</a>, <a href="training-courses/drug-testing.html" rel="dofollow">drug and alcohol
+                          testing</a>, <a href="training-courses/sexual-harassment-training.html" rel="dofollow">harassment prevention</a>, <a href="training-courses/hipaa.html" rel="dofollow">HIPAA compliance</a>, and more.</p>
+					</div>
+				</div>
+				<div class="flex flex-wrap items-center gap-2.5 sm:gap-4 mt-7">
+                    <a href="{{ $generalSettings['site_phone'] }}" target="_blank" class="btn has-text btn--contained btn--primary btn--middle"><span class="btn__content"> <span>
+                {{ $generalSettings['site_phone'] }}
+                        </span></span>  </a> <a href="/courses" class="btn has-text btn--contained btn--base btn--middle"><span class="btn__content">
+                        <span>
+                          Explore Training
+                        </span></span>  </a></div>
+			</div>
+			<div class="lg:max-w-lg w-full">
+				<h2 class="mb-5 font-semibold fs-h3 !break-words">
+                    Have Questions? Let’s Chat<br> <a rel="nofollow" href="tel:+1-888-390-5574" target="_blank" class="default-transition whitespace-nowrap text-inherit hover:underline"><span class="whitespace-nowrap">+1-888-390-5574</span> </a></h2>
+				<ul class="mb-5 [&amp;>li]:pb-2 [&amp;>li]:last:pb-0">
+					<li>Se habla Español</li>
+					<li>Monday - Friday 9 AM to 5 PM EST.</li>
+					<li>Closed on weekends and holidays.</li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+	<div class="px-4 container relative md:pt-20 pt-10 md:pb-7 bg-no-repeat bg-bottom bg-[length:100%_100%] bg-[url('assets/images/wave.png')]">
+		<div class="flex flex-col sm:flex-row justify-center sm:gap-7 gap-4">
+			<div class="shrink-0">
+				
+			</div>
+			<div class="flex-grow self-end text-center">
+				<div class="editor-text-wrap max-w-full data-table table-auto relative overflow-x-auto overflow-y-hidden main-scrollbar">
+					<p>Explore our <a href="terms.html" rel="nofollow">Terms of Service</a> and <a href="privacy-statement.html" rel="nofollow">Privacy Policy</a>, and <a href="meet-easler.html" rel="dofollow">meet our team</a>. We are dedicated to <a href="ada-accessibility.html" rel="nofollow">accessibility</a>, <a href="equal-employment-opportunity-and-anti-discrimination-policy.html" rel="nofollow">equal
+                        employment</a>, and compliance with <a href="https://oag.ca.gov/privacy/ccpa#" target="_blank" rel="nofollow">CCPA</a> and <a href="dmca-act.html" rel="nofollow">DMCA</a> regulations. We also offer <a href="enrollment-marketing.html" rel="dofollow">enrollment marketing</a>. <strong>We are
+                        not a law firm</strong>, and the information on our website is for informational purposes only and may not be up-to-date. Always consult a licensed attorney for personalized legal advice.</p>
+				</div>
+				<div class="md:p-4 p-3 items-center flex flex-col gap-1">
+					<p> © 2014 - 2024 WorkTraining.com, or its affiliates. All Rights Reserved. </p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+<?php /* ?>
 @php
     $socials = getSocials();
     if (!empty($socials) and count($socials)) {
