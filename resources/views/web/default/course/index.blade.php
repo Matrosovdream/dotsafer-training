@@ -48,7 +48,7 @@
 
                         @if($hasBought or $percent)
 
-                            <div class="mt-30 d-flex align-items-center">
+                            <div class="mt-15 d-flex align-items-center">
                                 <div class="progress course-progress flex-grow-1 shadow-xs rounded-sm">
                                     <span class="progress-bar rounded-sm bg-warning" style="width: {{ $percent }}%"></span>
                                 </div>

@@ -4371,8 +4371,9 @@ textarea.form-control {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  /*transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;*/
 }
+
 @media (prefers-reduced-motion: reduce) {
   .btn {
     transition: none;
@@ -19733,4 +19734,10 @@ p {
 
 .custom-checkbox .custom-control-input:disabled:checked ~ .custom-control-label::before {
   opacity: 0.6 !important;
+}
+
+.header-nav-menu {
+  --tw-bg-opacity: 1;
+  background-color: #f4f6fd;
+  background-color: rgb(var(--color-secondary) / var(--tw-bg-opacity));
 }

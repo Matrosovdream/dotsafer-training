@@ -16,7 +16,13 @@
     <link rel="stylesheet" href="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/toast/jquery.toast.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/simplebar/simplebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/default/vendors/feather-icons/dist/feather.css">
+
     <link rel="stylesheet" href="/assets/default/css/app.css">
+    <link rel="stylesheet" href="/assets/default/css/app2.css">
+    <link rel="stylesheet" href="/assets/default/css/app3.css">
+
     <link rel="stylesheet" href="/assets/default/css/panel.css">
 
     @if($isRtl)
@@ -47,7 +53,11 @@
 
 <div id="panel_app">
 
+    @include('web.default.includes.header')
+
+    <?php /*
     @include('web.default.includes.navbar')
+    */ ?>
 
     <div class="d-flex justify-content-end">
         @include('web.default.panel.includes.sidebar')

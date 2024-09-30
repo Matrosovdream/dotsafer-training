@@ -7,6 +7,14 @@
 
 
 @section('content')
+
+    <section class="flex flex-wrap cols-1 space-middle mt-50 mb-50">
+        <h1 class="fs-h1" style="text-align: center;">
+            Training Solutions for {{ !empty($category) ? $category->title : $pageTitle }}
+        </h1>
+    </section>
+
+    <?php /* ?>
     <section class="site-top-banner search-top-banner opacity-04 position-relative">
         <img src="{{ getPageBackgroundSettings('categories') }}" class="img-cover" alt=""/>
 
@@ -30,6 +38,7 @@
             </div>
         </div>
     </section>
+    <?php */ ?>
 
     <div class="container mt-30">
 

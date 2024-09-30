@@ -1,3 +1,12 @@
+<a href="/cart" class="btn btn--fab btn--contained btn--secondary btn--middle">
+  <span class="btn__content">
+  <i class='fa-solid blue-color fa-cart-shopping '></i>
+  </span> 
+</a>
+
+
+
+@php /*
 <div class="dropdown">
 
     @if((empty($userCarts) or count($userCarts) < 1) and !empty($userCartDiscount))

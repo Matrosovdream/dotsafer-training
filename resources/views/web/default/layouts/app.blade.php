@@ -15,7 +15,14 @@
     <link rel="stylesheet" href="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/toast/jquery.toast.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/simplebar/simplebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/default/vendors/feather-icons/dist/feather.css">
+
     <link rel="stylesheet" href="/assets/default/css/app.css">
+    <link rel="stylesheet" href="/assets/default/css/app2.css">
+    <link rel="stylesheet" href="/assets/default/css/app3.css">
+
+
 
     @if($isRtl)
         <link rel="stylesheet" href="/assets/default/css/rtl-app.css">
@@ -46,14 +53,21 @@
     @endif
 
     @if(!isset($appHeader))
+
+        @include('web.default.includes.header')
+
+        @php /*
         @include('web.default.includes.top_nav')
         @include('web.default.includes.navbar')
+        */ @endphp
     @endif
 
     @if(!empty($justMobileApp))
         @include('web.default.includes.mobile_app_top_nav')
     @endif
 
+    <div class="mt-0"></div>
+    
     @yield('content')
 
     @if(!isset($appFooter))
